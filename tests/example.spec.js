@@ -1,12 +1,21 @@
 const { test, expect } = require('@playwright/test');
 
 test('OrangeHRM Login', async ({ page }) => {
-  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+ console.log("Navigating to OrangeHRM Login Page");
 
-  await page.getByPlaceholder('Username').fill('Admin');
-  await page.getByPlaceholder('Password').fill('admin123');
+await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
 
-  await page.getByRole('button', { name: 'Login' }).click();
+console.log("Entering Username");
+await page.getByPlaceholder('Username').fill('Admin');
 
-  await expect(page).toHaveURL(/dashboard/);
+console.log("Entering Password");
+await page.getByPlaceholder('Password').fill('admin123');
+
+console.log("Clicking Login");
+await page.getByRole('button', { name: 'Login' }).click();
+
+console.log("Verifying Dashboard URL");
+await expect(page).toHaveURL(/dashboard/);
+
+console.log("Login Successful");
 });
